@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "event_id": "c0dex001-aaaa-4aaa-aaaa-000000000001",
+  "timestamp": "2026-10-11T04:32:17Z",
+  "source": "photonic-codex",
+  "type": "service.health",
+  "classification": "DEMONSTRATED",
+  "correlation_id": "corr-daemon-boot-001",
+  "provenance": {
+    "repository": "onegayunicorn/photonic-codex",
+    "revision": "codex/foundation-runtime-audit@a1b2c3d",
+    "evidence_uri": null
+  },
+  "payload": {
+    "health": "HEALTHY",
+    "module": "meta-hub",
+    "uptime_s": 412,
+    "observation_time": "2026-10-11T04:32:17Z"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "event_id": "plat0003-2222-4222-2222-000000000008",
+  "timestamp": "2026-10-11T04:32:17Z",
+  "source": "unicorn-sovereign-platform",
+  "type": "service.health",
+  "classification": "DEMONSTRATED",
+  "correlation_id": null,
+  "provenance": {
+    "repository": "onegayunicorn/unicorn-sovereign-platform",
+    "revision": "codex/integration-contract-v1@e5f6a7b",
+    "evidence_uri": null
+  },
+  "payload": {
+    "health": "DEGRADED",
+    "degraded_modules": [
+      "npc-sandbox"
+    ],
+    "healthy_modules": 8,
+    "observation_time": "2026-10-11T04:32:17Z"
+  }
+}

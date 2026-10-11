@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/onegayunicorn/photonic-codex/blob/main/schemas/sovereign-event-v1.schema.json",
+  "title": "Sovereign Ecosystem Event v1",
+  "description": "Shared event envelope. Contract status: proposed until cross-repository tests pass.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "event_id",
+    "timestamp",
+    "source",
+    "type",
+    "classification",
+    "payload"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "event_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "Z$"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "photonic-codex",
+        "unicorn-sovereign-platform",
+        "quantum-multiversal-nexus"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "service.health",
+        "capability.report",
+        "test.result",
+        "audit.record",
+        "event.receipt"
+      ]
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "PROPOSED",
+        "SIMULATED",
+        "DEMONSTRATED",
+        "MEASURED",
+        "UNVERIFIED",
+        "VALIDATED"
+      ]
+    },
+    "correlation_id": {
+      "type": ["string", "null"],
+      "maxLength": 128
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "repository": { "type": "string", "maxLength": 256 },
+        "revision": { "type": ["string", "null"], "maxLength": 128 },
+        "evidence_uri": { "type": ["string", "null"], "maxLength": 2048 }
+      }
+    },
+    "payload": {
+      "type": "object",
+      "maxProperties": 100
+    }
+  }
+}

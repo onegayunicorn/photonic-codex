@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "event_id": "plat0001-bbbb-4bbb-bbbb-000000000002",
+  "timestamp": "2026-10-11T04:32:17Z",
+  "source": "unicorn-sovereign-platform",
+  "type": "capability.report",
+  "classification": "SIMULATED",
+  "correlation_id": null,
+  "provenance": {
+    "repository": "onegayunicorn/unicorn-sovereign-platform",
+    "revision": "codex/integration-contract-v1@e5f6a7b",
+    "evidence_uri": "tests/quantum_sim/test_photonic.py::test_single_photon_state"
+  },
+  "payload": {
+    "module": "quantum-photonic-sim",
+    "stage": 0,
+    "status": "simulated",
+    "qubits_simulated": 4,
+    "note": "synthetic result, not physical hardware"
+  }
+}
