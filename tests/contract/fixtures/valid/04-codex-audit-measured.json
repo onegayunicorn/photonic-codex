@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "event_id": "c0dex002-dddd-4ddd-dddd-000000000004",
+  "timestamp": "2026-10-11T04:32:17Z",
+  "source": "photonic-codex",
+  "type": "audit.record",
+  "classification": "MEASURED",
+  "correlation_id": null,
+  "provenance": {
+    "repository": "onegayunicorn/photonic-codex",
+    "revision": "codex/foundation-runtime-audit@a1b2c3d",
+    "evidence_uri": null
+  },
+  "payload": {
+    "log_ref": "ResonanceLogs/2026-10-11/0042",
+    "entries": 17,
+    "procedure": "daemon-event-ingest",
+    "units": "events"
+  }
+}

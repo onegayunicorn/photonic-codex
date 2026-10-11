@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "event_id": "sem005-7777-4777-7777-000000000005",
+  "timestamp": "2026-10-11T04:32:17Z",
+  "source": "photonic-codex",
+  "type": "audit.record",
+  "classification": "MEASURED",
+  "correlation_id": null,
+  "provenance": {
+    "repository": "onegayunicorn/photonic-codex",
+    "revision": "codex/foundation-runtime-audit@a1b2c3d",
+    "evidence_uri": null
+  },
+  "payload": {
+    "command": "rm -rf /",
+    "note": "v1 must not carry commands"
+  }
+}

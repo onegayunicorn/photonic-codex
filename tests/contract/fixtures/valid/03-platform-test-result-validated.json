@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "event_id": "plat0002-cccc-4ccc-cccc-000000000003",
+  "timestamp": "2026-10-11T04:32:17Z",
+  "source": "unicorn-sovereign-platform",
+  "type": "test.result",
+  "classification": "VALIDATED",
+  "correlation_id": "corr-contract-v1",
+  "provenance": {
+    "repository": "onegayunicorn/unicorn-sovereign-platform",
+    "revision": "codex/integration-contract-v1@e5f6a7b",
+    "evidence_uri": "tests/contract/test_event_schema.py"
+  },
+  "payload": {
+    "test_suite": "contract-v1",
+    "passed": true,
+    "criterion": "schema-validates",
+    "assertions": 12,
+    "duration_ms": 84
+  }
+}
