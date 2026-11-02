@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "event_id": "nexus002-ffff-4fff-ffff-000000000006",
+  "timestamp": "2026-10-11T04:32:17Z",
+  "source": "quantum-multiversal-nexus",
+  "type": "service.health",
+  "classification": "UNVERIFIED",
+  "correlation_id": null,
+  "provenance": {
+    "repository": "onegayunicorn/quantum-multiversal-nexus",
+    "revision": "codex/integration-contract-v1@9c8d7e6",
+    "evidence_uri": null
+  },
+  "payload": {
+    "health": "UNKNOWN",
+    "reason": "no platform report within staleness window",
+    "last_seen": "2026-10-11T03:10:00Z",
+    "observation_time": "2026-10-11T04:32:17Z"
+  }
+}

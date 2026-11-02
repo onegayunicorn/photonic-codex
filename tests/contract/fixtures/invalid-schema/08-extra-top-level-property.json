@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "event_id": "7f3a1c9e-2b4d-4e8a-9c5f-0a1b2c3d4e5f",
+  "timestamp": "2026-10-11T04:32:17Z",
+  "source": "photonic-codex",
+  "type": "service.health",
+  "classification": "DEMONSTRATED",
+  "correlation_id": null,
+  "provenance": {
+    "repository": "onegayunicorn/photonic-codex",
+    "revision": "codex/foundation-runtime-audit@a1b2c3d",
+    "evidence_uri": null
+  },
+  "payload": {},
+  "unexpected_field": true
+}

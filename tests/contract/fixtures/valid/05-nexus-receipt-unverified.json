@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "event_id": "nexus001-eeee-4eee-eeee-000000000005",
+  "timestamp": "2026-10-11T04:32:17Z",
+  "source": "quantum-multiversal-nexus",
+  "type": "event.receipt",
+  "classification": "UNVERIFIED",
+  "correlation_id": "plat0001-bbbb-4bbb-bbbb-000000000002",
+  "provenance": {
+    "repository": "onegayunicorn/quantum-multiversal-nexus",
+    "revision": null,
+    "evidence_uri": null
+  },
+  "payload": {
+    "mirrored_from": "unicorn-sovereign-platform",
+    "original_event_id": "plat0001-bbbb-4bbb-bbbb-000000000002"
+  }
+}

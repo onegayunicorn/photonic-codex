@@ -1,1 +1,91 @@
-<html><body><h1>Codexª Meta Hub</h1><p>Scrolls streaming. Vaults syncing. Agents online.</p></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Photonic Codex · Meta Hub</title>
+  <style>
+    :root{color-scheme:dark;--bg:#080d18;--panel:#111a2b;--line:#253752;--text:#e8f0ff;--muted:#98aac8;--cyan:#66e5f4;--violet:#b3a1ff;--amber:#ffd17c}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#172647 0,#080d18 55%);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
+    header,main,footer{width:min(1120px,calc(100% - 32px));margin:auto}header{padding:32px 0 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    h1{font-size:clamp(1.7rem,4vw,2.6rem);margin:0;letter-spacing:-.04em}h1 span{color:var(--cyan)}p{margin:.45rem 0;color:var(--muted)}
+    .pill{border:1px solid var(--line);border-radius:999px;padding:6px 11px;color:var(--cyan);font-size:.8rem;white-space:nowrap}
+    .grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px}.panel{background:linear-gradient(145deg,#131e32ee,#0e1727ee);border:1px solid var(--line);border-radius:16px;padding:18px;min-width:0}.wide{grid-column:span 8}.side{grid-column:span 4}.full{grid-column:1/-1}
+    h2{font-size:1rem;margin:0 0 12px} .metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.metric{padding:12px;border-radius:12px;background:#091322;border:1px solid #1b2a43}.metric strong{display:block;font-size:1.5rem;color:var(--cyan)}.metric small{color:var(--muted)}
+    .module-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.module{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px;border:1px solid var(--line);border-radius:10px;font-size:.9rem}.status{font-size:.72rem;color:var(--amber);border:1px solid #6d5630;border-radius:999px;padding:2px 7px;white-space:nowrap}
+    button{background:#13283b;color:var(--text);border:1px solid #31516b;border-radius:9px;padding:9px 12px;font:inherit;cursor:pointer}button:hover{border-color:var(--cyan)}button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+    pre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;max-height:260px;overflow:auto;color:#c2d6f3;font-size:.82rem}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.note{font-size:.82rem;border-left:2px solid var(--violet);padding-left:10px}.error{color:#ffb2a8}footer{padding:22px 0 32px;font-size:.8rem}
+    @media(max-width:760px){.wide,.side{grid-column:1/-1}.metrics{grid-template-columns:1fr}.module-list{grid-template-columns:1fr}header{padding-top:22px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div><h1>Photonic <span>Codex</span></h1><p>Local-first operations · evidence before elevation</p></div>
+    <div class="pill" id="connection" role="status" aria-live="polite">Connecting to local API…</div>
+  </header>
+  <main class="grid">
+    <section class="panel wide">
+      <div class="row"><h2>Runtime overview</h2><button id="refresh" type="button">Refresh status</button></div>
+      <div class="metrics">
+        <div class="metric"><strong id="health">—</strong><small>API health</small></div>
+        <div class="metric"><strong id="module-count">—</strong><small>Registered modules</small></div>
+        <div class="metric"><strong>READ ONLY</strong><small>Current operating mode</small></div>
+      </div>
+      <p class="note">This dashboard reports service metadata. It does not activate agents, execute commands, or establish physical hardware capability.</p>
+    </section>
+    <section class="panel side"><h2>Trust boundary</h2>
+      <p>External adapters: <strong>disabled by default</strong></p>
+      <p>Privileged actions: <strong>HOLD</strong></p>
+      <p>Event persistence: <strong>process memory only</strong></p>
+      <p>Evidence labels: <strong>MEASURED / SIMULATED / DERIVED / UNVERIFIED</strong></p>
+    </section>
+    <section class="panel full"><h2>Module registry</h2><div id="modules" class="module-list"><p>Loading module registry…</p></div></section>
+    <section class="panel full"><div class="row"><h2>Recent diagnostic events</h2><button id="events-refresh" type="button">Refresh events</button></div><pre id="events">No events loaded.</pre></section>
+  </main>
+  <footer>Photonic Codex · early development build · local API v1 · remote connectivity is not enabled by this interface.</footer>
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const connection = $('connection');
+  async function getJSON(path) {
+    const response = await fetch(path, {headers: {'Accept': 'application/json'}, cache: 'no-store'});
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+    return response.json();
+  }
+  async function refresh() {
+    connection.textContent = 'Checking local API…';
+    connection.classList.remove('error');
+    try {
+      const [health, registry] = await Promise.all([getJSON('/api/v1/health'), getJSON('/api/v1/modules')]);
+      $('health').textContent = health.status.toUpperCase();
+      $('module-count').textContent = registry.modules.length;
+      $('modules').replaceChildren();
+      for (const module of registry.modules) {
+        const item = document.createElement('div'); item.className = 'module';
+        const name = document.createElement('span'); name.textContent = module.id;
+        const status = document.createElement('span'); status.className = 'status'; status.textContent = module.status;
+        item.append(name, status); $('modules').append(item);
+      }
+      connection.textContent = 'LOCAL API ONLINE · ' + health.api_version;
+      await refreshEvents();
+    } catch (error) {
+      $('health').textContent = 'OFFLINE';
+      connection.textContent = 'API unavailable — start server.py';
+      connection.classList.add('error');
+      $('modules').textContent = 'Module registry unavailable. This page expects the local Flask API.';
+    }
+  }
+  async function refreshEvents() {
+    try {
+      const result = await getJSON('/api/v1/events?limit=20');
+      $('events').textContent = JSON.stringify(result, null, 2);
+    } catch (error) { $('events').textContent = 'Events unavailable: ' + error.message; }
+  }
+  $('refresh').addEventListener('click', refresh);
+  $('events-refresh').addEventListener('click', refreshEvents);
+  refresh();
+})();
+</script>
+</body>
+</html>
